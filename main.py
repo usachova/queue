@@ -3,11 +3,11 @@ import vk_api
 from vk_api.keyboard import VkKeyboard, VkKeyboardColor
 from vk_api.utils import get_random_id
 
-vk_session = vk_api.VkApi(token='fd1d3a743ce651e178b3434ea31cfeca7227f970ad24d21babbd981aec92ec2528eac7047a98ce43c45c2')
+vk_session = vk_api.VkApi(token='..')
 
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
 
-longpoll = VkBotLongPoll(vk_session, '200850856')
+longpoll = VkBotLongPoll(vk_session, '..')
 vk = vk_session.get_api()
 from vk_api.longpoll import VkLongPoll, VkEventType
 
