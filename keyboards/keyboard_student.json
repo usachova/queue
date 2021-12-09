@@ -1,0 +1,33 @@
+{
+  "one_time": false,
+  "buttons": [
+    [{
+      "action": {
+        "type": "text",
+        "label": "записаться на сдачу"
+      },
+      "color": "secondary"
+    },
+      {
+        "action": {
+          "type": "text",
+          "label": "удалить себя из очереди"
+        },
+        "color": "secondary"
+      }],
+    [{
+      "action": {
+        "type": "text",
+        "label": "список своих слотов"
+      },
+      "color": "secondary"
+    },
+    {
+      "action": {
+        "type": "text",
+        "label": "очередь на предмет"
+      },
+      "color": "secondary"
+    }]
+  ]
+}

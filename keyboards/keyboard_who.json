@@ -1,0 +1,20 @@
+{
+  "one_time": true,
+  "buttons": [
+    [{
+      "action": {
+        "type": "text",
+        "label": "преподаватель"
+      },
+      "color": "secondary"
+    },
+      {
+        "action": {
+          "type": "text",
+          "label": "студент"
+        },
+        "color": "secondary"
+      }
+    ]
+  ]
+}

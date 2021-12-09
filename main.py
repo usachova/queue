@@ -19,6 +19,7 @@ my_slovechki = {'!спасибо': 'пожалуста!!!!!!!!!!!!',
 my_server = Server(my_token, my_group_id)
 my_server.start(my_subjects, my_subj_dict, my_namesofsubjs, my_slovechki)
 
+
 # Automatically launch when terminating (for Heroku)
 def thread_function():
     while True:

@@ -21,6 +21,22 @@ class Server:
         full_name = user_get[0]['first_name'] + " " + user_get[0]['last_name']
         return full_name
 
+    def send_mes_group(self):
+        pass
+
+    def send_img_group(self):
+        pass
+
+    def send_mes_user(self, user_id, message, keyboard=None):
+        post = {
+            "user_id": user_id,
+            "message": message,
+            "random_id": 0
+        }
+        if keyboard is not None:
+            post["keyboard"] = open(keyboard, "r", encoding="UTF-8").read()
+        self.vk_session.method("messages.send", post)
+
     def start(self, subjects, subj_dict, namesofsubjs, slovechki):
         queue = MyQueue(subjects, subj_dict, namesofsubjs, slovechki)
         for event in self.longpoll.listen():
@@ -122,4 +138,13 @@ class Server:
                         )
 
                 elif event.from_user:
-                    pass
+                    text = event.object['text'].lower()
+                    user_id = event.object.peer_id
+                    if '!начать' in text:
+                        self.send_mes_user(user_id, "вы студент или преподаватель?", "keyboards/keyboard_who.json")
+                    elif 'студент' in text:
+                        self.send_mes_user(user_id, "выберите действие", "keyboards/keyboard_student.json")
+                    elif 'преподаватель' in text:
+                        self.send_mes_user(user_id, "выберите действие", "keyboards/keyboard_teacher.json")
+                    elif 'добавить слоты' in text:
+                        self.send_mes_user(user_id, "..", "keyboards/keyboard_none.json")
