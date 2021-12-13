@@ -16,6 +16,9 @@ class Server:
         self.vk_session = vk_api.VkApi(token=token)
         self.longpoll = VkBotLongPoll(self.vk_session, group_id)
         self.vk = self.vk_session.get_api()
+        self.last_action = ''
+        self.last_subj = ''
+        self.last_user = ''
 
     def get_name(self, event):
         user_get = self.vk.users.get(user_ids=str(event.object.from_id))
@@ -142,48 +145,51 @@ class Server:
                 elif event.from_user:
                     text = event.object['text'].lower()
                     user_id = event.object.peer_id
-                    last_action = ''
-                    last_subj = ''
-                    last_user = ''
                     if '!начать' in text:
                         self.send_mes_user(user_id, "вы студент или преподаватель?", "keyboards/keyboard_who.json")
                     elif 'студент' == text:
                         self.send_mes_user(user_id, "выберите действие", "keyboards/keyboard_student.json")
-                        last_user = 'студент'
+                        self.last_user = 'студент'
                     elif 'преподаватель' == text:
                         self.send_mes_user(user_id, "выберите действие", "keyboards/keyboard_teacher.json")
-                        last_user = 'преподаватель'
+                        self.last_user = 'преподаватель'
                     elif 'добавить слоты' == text or 'очередь на предмет' == text or 'очистить очередь' == text\
-                            or 'записаться на сдачу' == text or 'удалить себя из очереди' == text\
-                            or 'список своих слотов' == text:
+                            or 'записаться на сдачу' == text or 'удалить себя из очереди' == text:
                         self.send_mes_user(user_id, "выберите предмет", "keyboards/keyboard_subjects.json")
-                        last_action = text
+                        self.last_action = text
                     elif text == 'uml' or text == 'ml':
-                        if last_action == 'добавить слоты':
+                        if self.last_action == 'добавить слоты':
                             mes = "перечислите слоты в формате '!слоты: 14:20 14:40'"
                             self.send_mes_user(user_id, mes, "keyboards/keyboard_none.json")
-                            last_subj = text
-                        elif last_action == 'очередь на предмет':
+                            self.last_subj = text
+                        elif self.last_action == 'очередь на предмет':
                             mes = manager.show_the_queue(text)
-                            if last_user == 'преподаватель':
+                            if self.last_user == 'преподаватель':
                                 self.send_mes_user(user_id, mes, "keyboards/keyboard_teacher.json")
-                            elif last_user == 'студент':
+                            elif self.last_user == 'студент':
                                 self.send_mes_user(user_id, mes, "keyboards/keyboard_student.json")
-                        elif last_action == 'очистить очередь':
+                        elif self.last_action == 'очистить очередь':
                             manager.clear_queue(text)
                             self.send_mes_user(user_id, "очередь очищена", "keyboards/keyboard_teacher.json")
-                        elif last_action == 'записаться на сдачу':
-                            name = self.get_name(event)
-                            manager.add_to_queue(text, name)
-                            self.send_mes_user(user_id, "вы записаны на сдачу", "keyboards/keyboard_student.json")
-                        elif last_action == 'удалить себя из очереди':
+                        elif self.last_action == 'записаться на сдачу':
+                            mes = manager.show_slots(text)
+                            mes += "\nвыберите слот в формате '!запись 14:20'"
+                            self.send_mes_user(user_id, mes, "keyboards/keyboard_none.json")
+                            self.last_subj = text
+                        elif self.last_action == 'удалить себя из очереди':
                             name = self.get_name(event)
                             manager.remove_student_from_queue(text, name)
                             self.send_mes_user(user_id, "вы удалены из очереди", "keyboards/keyboard_student.json")
-                        elif last_action == 'список своих слотов':
-                            name = self.get_name(event)
-                            mes = manager.show_list_of_slots(text, name)
-                            self.send_mes_user(user_id, mes, "keyboards/keyboard_student.json")
+                    elif text == 'список своих слотов':
+                        name = self.get_name(event)
+                        mes = manager.show_list_of_slots(name)
+                        self.send_mes_user(user_id, mes, "keyboards/keyboard_student.json")
+                    elif '!запись' in text:
+                        name = self.get_name(event)
+                        manager.add_to_queue(self.last_subj, name, text)
+                        self.send_mes_user(user_id, "вы записаны на сдачу", "keyboards/keyboard_student.json")
                     elif '!слоты:' in text:
-                        manager.add_slots(text, last_subj)
+                        manager.add_slots(text, self.last_subj)
                         self.send_mes_user(user_id, "слоты записаны", "keyboards/keyboard_teacher.json")
+                    elif '!закончить' in text:
+                        self.send_mes_user(user_id, "до связи!", "keyboards/keyboard_none.json")
