@@ -1,0 +1,20 @@
+{
+  "one_time": true,
+  "buttons": [
+    [{
+      "action": {
+        "type": "text",
+        "label": "uml"
+      },
+      "color": "secondary"
+    },
+      {
+        "action": {
+          "type": "text",
+          "label": "ml"
+        },
+        "color": "secondary"
+      }
+    ]
+  ]
+}
