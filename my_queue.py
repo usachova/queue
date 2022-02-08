@@ -39,7 +39,7 @@ class MyQueue:
         return s
 
     def check_words(self, msg):
-        words = ['!очистить', '!запись', '!удалиться', '!очередь ', '!дима', '!тейлор', '!команды']
+        words = ['!очистить', '!запись', '!удалиться', '!очередь ', '!дима', '!тейлор', '!рашид', '!команды']
         tests_commands = ['!!очиститьвсё', '!!смотретьвсё']
         words += tests_commands
         words += self.slovechki.keys()

@@ -101,12 +101,15 @@ class Server:
                             if slov in text:
                                 mes = queue.slovechki[slov]
 
-                        if '!тейлор' in text:
-                            dir_name = 'taylor/'
-                            taylor_list = os.listdir(dir_name)
+                        if '!тейлор' in text or '!рашид' in text:
+                            if '!тейлор' in text:
+                                dir_name = 'taylor/'
+                            if '!рашид' in text:
+                                dir_name = 'prikol/rashid/'
+                            photo_list = os.listdir(dir_name)
                             upload = vk_api.VkUpload(self.vk)
                             photo = upload.photo_messages(
-                                dir_name + taylor_list[random.randint(0, len(taylor_list) - 1)])
+                                dir_name + photo_list[random.randint(0, len(photo_list) - 1)])
                             owner_id = photo[0]['owner_id']
                             photo_id = photo[0]['id']
                             access_key = photo[0]['access_key']

@@ -3,9 +3,12 @@ from server import Server
 my_token = '828d15350ed7aabdb944a2defc9f780bc8b0ed16ddaf94f97e2a79574e953cbeb586c460709098852f6fd'
 my_group_id = '200850856'
 
-my_subjects = ["subjs/web", "subjs/linux", "subjs/primat", "subjs/uml", "subjs/ml"]
-my_subj_dict = {"веб": 0, "web": 0, "линукс": 1, "linux": 1, "примат": 2, "uml": 3, "юмл": 3, "ml": 4, "мл": 4}
-my_namesofsubjs = ["веб", "линукс", "примат", "юмл", "мл"]
+# my_subjects = ["subjs/web", "subjs/linux", "subjs/primat", "subjs/uml", "subjs/ml"]
+# my_subj_dict = {"веб": 0, "web": 0, "линукс": 1, "linux": 1, "примат": 2, "uml": 3, "юмл": 3, "ml": 4, "мл": 4}
+# my_namesofsubjs = ["веб", "линукс", "примат", "юмл", "мл"]
+my_subjects = ["subjs/web", "subjs/archIS", "subjs/TSIT"]
+my_subj_dict = {"веб": 0, "web": 0, "архитектура": 1, "ис": 1, "тсит": 2, "телекоммуникационные системы и технологии": 2}
+my_namesofsubjs = ["веб", "архитектура ис", "телекоммуникационные системы и технологии"]
 my_slovechki = {'!спасибо': 'пожалуста!!!!!!!!!!!!',
              '!прости': 'пососи',
              'мой.': 'факт!',
