@@ -8,7 +8,7 @@ if os.path.exists("secret.txt"):
     f.close()
 else:
     my_token = os.environ.get("MY_TOKEN")
-    my_group_id = 200850856
+    my_group_id = os.environ.get("MY_GROUP_ID")
 
 # my_subjects = ["subjs/web", "subjs/linux", "subjs/primat", "subjs/uml", "subjs/ml"]
 # my_subj_dict = {"веб": 0, "web": 0, "линукс": 1, "linux": 1, "примат": 2, "uml": 3, "юмл": 3, "ml": 4, "мл": 4}
