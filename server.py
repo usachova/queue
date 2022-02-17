@@ -95,7 +95,7 @@ class Server:
                                     mes = 'рекорд дней без димы в вузе: ' + record + '..😤'
                                     f.close()
                             else:
-                                mes = 'клоун'
+                                mes = 'больше НЕ клоун теперь клоун стасик'
 
                         for slov in queue.slovechki:
                             if slov in text:

@@ -24,7 +24,9 @@ my_slovechki = {'!спасибо': 'пожалуста!!!!!!!!!!!!',
              'наш)': 'наш максимально!',
              'мой)': 'факт!',
              '!отчислить диму': 'дим димович димыч отчислен с позором😤',
-             '!сайт': 'https://usachova.github.io/ITMO-WEB/'}
+             '!сайт': 'https://usachova.github.io/ITMO-WEB/',
+             '!стасик': 'клоун + уебан'}
+
 
 my_server = Server(my_token, my_group_id)
 my_server.start(my_subjects, my_subj_dict, my_namesofsubjs, my_slovechki)
