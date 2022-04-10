@@ -1,9 +1,11 @@
 class MyQueue:
-    def __init__(self, subjects, subj_dict, namesofsubjs, slovechki):
+    def __init__(self, subjects, subj_dict, namesofsubjs, slovechki, tsit_num, tsit_people):
         self.subjects = subjects
         self.subj_dict = subj_dict
         self.namesofsubjs = namesofsubjs
         self.slovechki = slovechki
+        self.tsit_num = tsit_num
+        self.tsit_people = tsit_people
 
     def read_list_from_file(self, filename):
         list1, list2 = [], []
@@ -58,6 +60,10 @@ class MyQueue:
         if l and l[0] in self.subj_dict:
             number = self.subj_dict[l[0]]
 
+            # тсит
+            if number == 2:
+                name = self.tsit_num[self.tsit_people[name.split()[1]]]
+
             listFirstPart, listSecondPart = self.read_list_from_file(self.subjects[number])
 
             if listFirstPart.count(name + '\n') or listSecondPart.count(name + '\n'):
@@ -99,6 +105,11 @@ class MyQueue:
         l = text.split()[1:]
         if l and l[0] in self.subj_dict:
             number = self.subj_dict[l[0]]
+
+            # тсит
+            if number == 2:
+                name = self.tsit_num[self.tsit_people[name.split()[1]]]
+
             listFirstPart, listSecondPart = self.read_list_from_file(self.subjects[number])
             if listFirstPart.count(name + '\n'):
                 listFirstPart.remove(name + '\n')

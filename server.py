@@ -41,8 +41,8 @@ class Server:
             post["keyboard"] = open(keyboard, "r", encoding="UTF-8").read()
         self.vk_session.method("messages.send", post)
 
-    def start(self, subjects, subj_dict, namesofsubjs, slovechki):
-        queue = MyQueue(subjects, subj_dict, namesofsubjs, slovechki)
+    def start(self, subjects, subj_dict, namesofsubjs, slovechki, tsit_num, tsit_people):
+        queue = MyQueue(subjects, subj_dict, namesofsubjs, slovechki, tsit_num, tsit_people)
         manager = QueueManager()
         for event in self.longpoll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
