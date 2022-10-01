@@ -65,8 +65,8 @@ class MyQueue:
             # if number == 2:
             #     name = self.tsit_num[self.tsit_people[name.split()[1]]]
 
-            # if number == 1:
-            #     name = self.tsit_num[self.tsit_people[name.split()[1]]]
+            if number == 1:
+                name = po_num[po_people[name.split()[1]]]
 
             if number == 2:
                 name = svi_num[svi_people[name.split()[1]]]
