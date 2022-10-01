@@ -1,3 +1,4 @@
+from vars import *
 class MyQueue:
     def __init__(self, subjects, subj_dict, namesofsubjs, slovechki, tsit_num, tsit_people):
         self.subjects = subjects
@@ -60,9 +61,15 @@ class MyQueue:
         if l and l[0] in self.subj_dict:
             number = self.subj_dict[l[0]]
 
-            # тсит
+            # # тсит
+            # if number == 2:
+            #     name = self.tsit_num[self.tsit_people[name.split()[1]]]
+
+            # if number == 1:
+            #     name = self.tsit_num[self.tsit_people[name.split()[1]]]
+
             if number == 2:
-                name = self.tsit_num[self.tsit_people[name.split()[1]]]
+                name = svi_num[svi_people[name.split()[1]]]
 
             listFirstPart, listSecondPart = self.read_list_from_file(self.subjects[number])
 
